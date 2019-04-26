@@ -90,12 +90,28 @@
 
     for (var i = 0; i < elements.length; i++) {
 
-        var allClass = elements[i].classList;
+        var allClass = elements[i].classList;    
+            allClassArr = Object.keys(allClass).map(function(key) {
+                return allClass[key];
+            });   
+
+        var classPopIndex = allClassArr.findIndex(getIndex);
+
+        function getIndex(value){
+            return value.match(/(e\Wp\W\d(?![a-z][A-Z]))/);
+        }
+        var popValue = allClassArr[classPopIndex];
+
+        if (classPopIndex > 0){            
+            allClassArr.splice(classPopIndex,1);
+            allClassArr.unshift(popValue);
+        }   
+        console.log(allClassArr);
         
-        for (var j = 0; j < allClass.length; j++) {
-        
-            if (allClass[j].indexOf(selector) != -1) {
-                var required = allClass[j].substr(selectorLenght),
+        for (var j = 0; j < allClassArr.length; j++) {
+            
+            if (allClassArr[j].indexOf(selector) != -1) {
+                var required = allClassArr[j].substr(selectorLenght),
                     value = required.match(/\d/g).toString().replace(",", ""),
                     cases = required.replace(/\d/g, '');
                 padding(cases);
