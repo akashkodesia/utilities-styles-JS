@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+            <meta name="viewport" content="initial-scale=1,maximum-scale=1"/> 
         <title>Test Page</title>
         
         <style>
@@ -18,7 +19,7 @@
             div > div{
                 background:black;
                 width:100%;
-                min-height: 100%;
+                height: 100%;
             }
         </style>
     </head>
@@ -29,8 +30,10 @@
         <div class="e-pt-20 test1 test2 test3">
             <div></div>
         </div>
-        <div class="e-p-md-50 test1 test2 test3 e-p-20">
-            <div></div>
+        <div id="testdiv" class="e-p-md-50 test1 e-p-xs-5 e-pb-xs-155 test2 test3 e-p-20">
+            <div id="test" style="color:#fff">
+                Width:<span id="width"></span>  Padding:<span id="pad"></span>
+            </div>
         </div>
         <script src="plugin.js"></script>
     </body>

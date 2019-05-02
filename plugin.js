@@ -8,6 +8,8 @@
         elements = document.querySelectorAll('[class*=' + selector + ']'),
         vewportWidth = window.innerWidth,
         selectorLenght = selector.split('').length;
+        document.getElementById('width').innerHTML = vewportWidth; // For Test purpose only
+
 
     /* All padding Cases All */
     function padding(cases) {
@@ -95,8 +97,9 @@
                 return allClass[key];
             });   
 
-        var classPopIndex = allClassArr.findIndex(getIndex);
-
+        /* Not required, remove in final Version
+    
+        var classPopIndex = allClassArr.findIndex(getIndex);  
         function getIndex(value){
             return value.match(/(e\Wp\W\d(?![a-z][A-Z]))/);
         }
@@ -105,19 +108,22 @@
         if (classPopIndex > 0){            
             allClassArr.splice(classPopIndex,1);
             allClassArr.unshift(popValue);
-        }   
+        }*/   
+        allClassArr.sort();
         console.log(allClassArr);
         
         for (var j = 0; j < allClassArr.length; j++) {
             
             if (allClassArr[j].indexOf(selector) != -1) {
                 var required = allClassArr[j].substr(selectorLenght),
-                    value = required.match(/\d/g).toString().replace(",", ""),
+                    value = required.match(/\d/g).toString().replace(/\W/g, ""),
                     cases = required.replace(/\d/g, '');
-                padding(cases);
+                
                 // Starting Cases for padding
                 if (/^p/.test(required)) {
-                    
+
+                    padding(cases);
+
                     // Case will execute on mobile screens
                     if (vewportWidth < sm) {
                         paddingXS(cases);
@@ -141,4 +147,7 @@
         }
 
     }
+    // For Test purpose only
+    var s = document.getElementById('testdiv').style.padding;
+    document.getElementById('pad').innerHTML = s;
 })();
