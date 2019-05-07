@@ -94,7 +94,9 @@
 
         var allClass = elements[i].classList;    
             allClassArr = Object.keys(allClass).map(function(key) {
-                return allClass[key];
+                var raw = allClass[key],
+                    toLower = raw.toLowerCase();
+                return toLower;
             });   
 
         /* Not required, remove in final Version
@@ -110,7 +112,7 @@
             allClassArr.unshift(popValue);
         }*/   
         allClassArr.sort();
-        console.log(allClassArr);
+        console.log(allClassArr); debugger;
         
         for (var j = 0; j < allClassArr.length; j++) {
             
